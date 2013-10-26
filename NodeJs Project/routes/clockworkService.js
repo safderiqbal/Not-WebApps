@@ -1,7 +1,7 @@
 /**
  * Created by Simon on 26/10/13.
  */
-
+var translator = require('./translators');
 exports.send = function(req){
     var http = require('http'),
         CLOCKWORK_SERVICE_URL = 'https://api.clockworksms.com/http/send.aspx',
@@ -34,9 +34,11 @@ exports.receive = function(req, res) {
     console.log(req.body.from);
     console.log(req.body.content);
 
+    var translated = translator.pirate(req.body.content)
+
     exports.send({
         toNumber: req.body.from,
-        content: req.body.content
+        content: translated
     });
 
     res.end();
