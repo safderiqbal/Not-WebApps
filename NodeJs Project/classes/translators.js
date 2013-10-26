@@ -1,12 +1,12 @@
 /**
  * Created by Safder on 26/10/13.
  */
+
 var http,
     options,
     callback,
-    message,
-    request,
-    list;
+    ermahgerd,
+    request;
 
 http = require('http'),
     options = {
@@ -14,8 +14,11 @@ http = require('http'),
         path: ''
     },
     request = require('request'),
-    list = {}
-;
+    ermahgerd = require('./ermahgerd');
+
+exports.available = ['pirate',
+                'ermahgerd'];//,
+               // 'yoda'];
 
 exports.pirate = function (message, callback) {
     request.get(
@@ -25,12 +28,12 @@ exports.pirate = function (message, callback) {
         }
     );
 }
-//    ermahgerd: function(message){
-//        // something
-//        return true;
-//    },
-//    yoda: function(message){
-//        //something
-//        return true;
-//    }
-//}
+exports.ermahgerd = function(message, callback) {
+    var result;
+    result = ermahgerd(message);
+    callback(result);
+}
+
+exports.yoda = function(message, callback) {
+
+}
