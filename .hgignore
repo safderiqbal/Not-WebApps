@@ -1,0 +1,3 @@
+syntax: glob
+NodeJs Project/.idea/*
+NodeJs Project/node_modules/*
