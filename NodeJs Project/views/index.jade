@@ -1,6 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  .sid
-      =sessionId
+    h1= title
+    .row
+        .col-sm-12.sid
+            =sessionId
+    .row
+        .col-sm-12.numberTo.input-group
+            span.input-group-addon Send To
+            input(type='text', placeholder='Number for your recipient')
+    .row
+        .col-sm-12.numberFrom.input-group
+            span.input-group-addon Reply Number
+            input(type='text', placeholder='Number for recipient to reply to...')
+    .row
+        .col-sm-12.textText
+            textarea(rows='10', placeholder='Your Text Message...')
