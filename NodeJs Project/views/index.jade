@@ -8,11 +8,17 @@ block content
     .row
         .col-sm-12.numberTo.input-group
             span.input-group-addon Send To
-            input(type='text', placeholder='Number for your recipient')
+            input.form-control#from(type='text', placeholder='Number for your recipient')
     .row
         .col-sm-12.numberFrom.input-group
             span.input-group-addon Reply Number
-            input(type='text', placeholder='Number for recipient to reply to...')
+            input.form-control#to(type='text', placeholder='Number for recipient to reply to...')
     .row
         .col-sm-12.textText
-            textarea(rows='10', placeholder='Your Text Message...')
+            textarea.form-control#text(rows='10', placeholder='Your Text Message...')
+    .row
+        .col-sm-12.submitButton
+            input.btn.btn-default#submit(type='button', value='Submit');
+
+block scripts
+    script(src='/scripts/index.js');
