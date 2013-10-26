@@ -4,30 +4,26 @@
 var http,
     options,
     callback,
-    message;
+    message,
+    request;
 
 http = require('http'),
 options = {
     host:'',
     path:''
-};
-callback = function(response) {
+},
+request = require('request');
+callback = function(error,response,body) {
     var str = '';
     console.log('callback entered');
-    response.on('data', function (chunk) {
-        str += chunk;
-        console.log(chunk);
-    });
-    response.on('end', function () {
-        console.log(str);
-    })
+    console.log(body);
 };
 
 exports.pirate = function (req, res){
-        options.host = 'http://isithackday.com/';
-        options.path = 'arrpi.php?format=json&text=' + encodeURI(message);
-        http.request(options, callback).end();
-        res.send('');
+    request.get('http://isithackday.com/arrpi.php?format=json&text='+encodeURI(req.query.message),
+        {},
+        callback);
+    res.end();
     }
 //    ermahgerd: function(message){
 //        // something
