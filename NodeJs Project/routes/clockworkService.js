@@ -2,11 +2,11 @@
  * Created by Simon on 26/10/13.
  */
 
-exports = (function(){
+exports.send = (function(){
     var http = require('http'),
         CLOCKWORK_SERVICE_URL = 'https://api.clockworksms.com/http/send.aspx',
         API_KEY = '028646a5dff4200dd4539102cb07e37413de2896',
-        requestify = require('request');
+        request = require('request');
 
     var sendText = function (toNumber, content) {
         request.post(
@@ -20,13 +20,11 @@ exports = (function(){
             }
             , function (error, response, body) {
                 if (!error && response.statusCode == 200) {
-                    console.log(body);
+                    console.log('error' + body);
                 }
             }
         );
     };
 
-    return {
-        send: sendText
-    };
-}());
+    return sendText;
+ }());

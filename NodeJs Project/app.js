@@ -33,7 +33,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.post('/sendtext', sendtext.send)
-clockworkService.send(07763569935, 'Hi simon');
+clockworkService.send(447763569935, 'Hi simon');
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
