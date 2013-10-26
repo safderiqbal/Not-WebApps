@@ -2,8 +2,8 @@
 /*
  * POST send text.
  */
-var clockworkService = require('./clockworkService');
-var translators = require('./translators');
+var clockworkService = require('./../classes/clockworkService');
+var translators = require('./../classes/translators');
 
 exports.send = function(req, res){
 

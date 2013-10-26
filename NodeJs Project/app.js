@@ -7,10 +7,10 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var sendtext = require('./routes/sendtext');
-var translator = require('./routes/translators')
+var translator = require('./classes/translators')
 var http = require('http');
 var path = require('path');
-var clockworkService = require('./routes/clockworkService');
+var clockworkService = require('./classes/clockworkService');
 
 var app = express();
 
