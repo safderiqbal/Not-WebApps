@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextYourFridge", "TextYourFridge\TextYourFridge.csproj", "{954615C3-0D6C-41A8-AE5D-9DC467E2BC1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextRoulette", "TextYourFridge\TextRoulette.csproj", "{954615C3-0D6C-41A8-AE5D-9DC467E2BC1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
