@@ -5,6 +5,10 @@
 var clockworkService = require('./clockworkService');
 
 exports.send = function(req, res){
-    clockworkService.send(req.body.to, req.body.text);
+    clockworkService.send({
+        toNumber: req.body.to,
+        content: req.body.text
+    });
+
     res.send("blerb");
 }
