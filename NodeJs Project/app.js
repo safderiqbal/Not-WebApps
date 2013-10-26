@@ -10,6 +10,7 @@ var sendtext = require('./routes/sendtext');
 var translator = require('./routes/translators')
 var http = require('http');
 var path = require('path');
+var clockworkService = require('./routes/clockworkService');
 
 var app = express();
 
@@ -34,7 +35,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.post('/sendtext', sendtext.send);
 app.get('/test_pirate', translator.pirate);
-//app.get('/receive', clockworkService.receive)
+app.get('/receive', clockworkService.receive)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

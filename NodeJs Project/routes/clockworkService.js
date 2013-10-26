@@ -30,8 +30,14 @@ exports.send = function(req){
     );
 };
 
-//exports.receive = function(req, res) {
-//    req.
-//
-//    res.end();
-//};
+exports.receive = function(req, res) {
+    console.log(req.body.from);
+    console.log(req.body.content);
+
+    exports.send({
+        toNumber: req.body.from,
+        content: req.body.content
+    });
+
+    res.end();
+};
