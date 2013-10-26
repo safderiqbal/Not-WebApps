@@ -1,2 +1,3 @@
 syntax: glob
 NodeJs Project/node_modules/*
+NodeJs Project/.idea/*

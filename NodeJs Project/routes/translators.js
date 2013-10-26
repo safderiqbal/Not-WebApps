@@ -5,19 +5,22 @@ var http,
     options,
     callback,
     message,
-    request;
+    request,
+    list;
 
 http = require('http'),
-options = {
-    host:'',
-    path:''
-},
-request = require('request');
+    options = {
+        host: '',
+        path: ''
+    },
+    request = require('request'),
+    list = {}
+;
 
-exports.pirate = function (message, callback){
+exports.pirate = function (message, callback) {
     request.get(
-        'http://isithackday.com/arrpi.php?format=json&text='+encodeURI(message),
-        {},function (error, response, body) {
+        'http://isithackday.com/arrpi.php?format=json&text=' + encodeURI(message),
+        {}, function (error, response, body) {
             callback(JSON.parse(body).translation.pirate);
         }
     );
