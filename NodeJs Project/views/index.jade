@@ -32,21 +32,24 @@ block content
                 .col-sm-12.translators
                     h5 Choose a translator
                     .form-group
+                        .radio
+                            label
+                                input(type='radio', value='random', name='translator', checked)
+                                | random
                         each translator in translators
                             .radio
                                 label
                                     input(type='radio', value=translator, name='translator')
                                     = translator
-                        .radio
-                            label
-                                input(type='radio', value='random', name='translator', checked)
-                                | random
 
     .row
         .panel.panel-default
             .panel-heading
                 h4 Messages
             .panel-body#messages
+    .row
+        p
+            a(href='http://translate.yandex.com/') Translated by the Yandex.Translate service
 
 
 block scripts
