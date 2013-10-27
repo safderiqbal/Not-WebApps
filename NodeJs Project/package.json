@@ -1,5 +1,5 @@
 {
-  "name": "text-roulette",
+  "name": "text-roulette1",
   "version": "0.0.5-1",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "request": "~2.27.0",
     "socket.io": "~0.9.16"
   },
-  "subdomain": "text-roulette",
+  "subdomain": "text-roulette1",
   "engines": {
     "node": "0.10.x"
   }
