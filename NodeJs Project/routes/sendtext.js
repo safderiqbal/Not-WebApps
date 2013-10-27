@@ -18,9 +18,14 @@ exports.send = function(req, res){
             callback: final
         });
     }
+    // Returns a random integer between min and max
+// Using Math.round() will give you a non-uniform distribution!
+    var random_func = function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
 
     if (req.body.translator == 'random') {
-        var random = Math.abs(Math.floor(1 - Math.random() * translators.available.length));
+        var random = random_func(0,translators.available.length);
         var random_translator = translators.available[random];
         translators[random_translator](req.body.text, final);
     }
