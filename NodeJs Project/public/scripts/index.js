@@ -1,23 +1,3 @@
-$('#submit').click(function () {
-    var to = $('#to').val(),
-        from = $('#sessionId').val(),
-        text = $('#text').val(),
-        translator = $('input[name=translator]:checked').val()
-
-    $.ajax({
-        url: 'sendtext',
-        dataType: 'json',
-        type: 'POST',
-        data: {
-            from: from,
-            to: to,
-            text: text,
-            translator: translator
-        }
-    })
-});
-
-
 // initialize socket
 (function () {
     var messageHtml = function (sender, message) {
@@ -28,9 +8,23 @@ $('#submit').click(function () {
 
     var socket = io.connect('/');
 
-    socket.emit('registerSession', { sessionId: sessionId });
+    socket.emit('register', { sessionId: sessionId });
 
     socket.on('message', function (data) {
         messages.append(messageHtml(data.sender, data.message));
+    });
+
+    $('#submit').click(function () {
+        var to = $('#to').val(),
+            from = $('#sessionId').val(),
+            text = $('#text').val(),
+            translator = $('input[name=translator]:checked').val()
+
+        socket.emit('receive', {
+            from: from,
+            to: to,
+            text: text,
+            translator: translator
+        })
     });
 }())
