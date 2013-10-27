@@ -14,15 +14,15 @@ var getSessionId = function () {
 var connection = function (socket) {
     console.log('Socket connection')
 
-    send(socket, 'System', 'Messaging socket connected');
-
     socket.on('register', function (data) {
-        console.log('Socket registered from: ' + data.sessionId);
+        console.log('Socket event register: ' + data.sessionId);
         sockets[data.sessionId] = socket;
         send(socket, 'System', 'Session registered')
     });
 
     socket.on('receive', receive);
+
+    socket.emit('confirm');
 }
 
 var broadcast = function (sender, message) {
@@ -47,16 +47,17 @@ var random_func = function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-var receive = function (data) {
+function receive(data) {
     var from = data.from,
         to = data.to,
         message = data.text,
         translator = data.translator,
         available_array;
 
-    try {
+    console.log('Socket event receive');
 
-        console.log("Socket recieved message: " + JSON.stringify(data));
+    try {
+        console.log("Socket received message: " + JSON.stringify(data));
 
         sessions.addSession(from, to);
 
