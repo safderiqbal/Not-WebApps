@@ -1,4 +1,3 @@
-
 $('#submit').click(function () {
     var to = $('#to').val(),
         from = $('#from').val(),
@@ -17,3 +16,21 @@ $('#submit').click(function () {
         }
     })
 });
+
+
+// initialize socket
+(function () {
+    var messageHtml = function (sender, message) {
+        return '<div class="row"><div class="col-sm-4">' + sender + '</div><div class="col-sm-8">' + message + '</div></div>';
+    }
+    var messages = $('#messages');
+    var sessionId = $('#sessionId').val();
+
+    var socket = io.connect('/');
+
+    socket.emit('registerSession', { sessionId: sessionId });
+
+    socket.on('message', function (data) {
+        messages.append(messageHtml(data.sender, data.message));
+    });
+}())

@@ -40,9 +40,10 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.post('/sendtext', sendtext.send);
+app.post('/receive', receiveText.receive);
+
 app.get('/test_pirate', translator.pirate);
 app.get('/test_yoda', translator.yoda);
-app.post('/receive', receiveText.receive);
 app.get('/test_ermahgerd', translator.ermahgerd);
 
 var server =  http.createServer(app);
