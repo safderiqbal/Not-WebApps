@@ -6,24 +6,54 @@ var http,
     options,
     callback,
     ermahgerd,
-    request;
+    request,
+    htmlEscape,
+    htmlUnescape,
+    mashape_key,
+    yandex_key,
+    xtend,
+    pull_yandex_list;
 
 http = require('http'),
     options = {
         host: '',
         path: ''
     },
-    request = require('request'),
-    ermahgerd = require('./ermahgerd').translate;
+    request = require('request')
+    xtend = require('xtend'),
+    ermahgerd = require('./ermahgerd').translate,
+    mashape_key = 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'
+    yandex_key = 'trnsl.1.1.20131027T100107Z.fde43fed6e42a72d.19b8b20bb9f723620d058c4c2b6f53b40aa6bf2d';
 
-exports.available = ['pirate',
+var available = ['pirate',
                 'ermahgerd',
                 'yoda',
                 'jive',
                 'swedish_chef',
-                'piglatin',
-                'valleygirls',
-                'leetspeak'];
+                'pig_latin',
+                'valley_girls',
+                '1337sp34k'];
+
+exports.available = function () {
+    return available;
+}
+
+var pull_yandex_list = function(){
+    try {
+        request.get(
+            'https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=' + yandex_key +
+                '&ui=uk',
+            {}, function(error, response, body){
+                console.log(JSON.parse(body).dirs);
+                available = available.concat(JSON.parse(body).dirs.filter(function(arg){
+                    return arg.indexOf('en') !== -1;
+                }));
+            }
+        )
+    }
+    catch (e)
+    {console.log(e);}
+};
 
 exports.pirate = function (message, callback) {
     // doesn't handle apostrophe's so we strip 'em
@@ -46,7 +76,7 @@ exports.ermahgerd = function(message, callback) {
 exports.yoda = function(message, callback) {
     request.get(
         'https://yoda.p.mashape.com/yoda?sentence=' + encodeURI(message),
-        {headers: {'X-Mashape-Authorization': 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'}},
+        {headers: {'X-Mashape-Authorization': mashape_key}},
         function(error, response, body) {
             console.log('yoda: ' + body);
             callback(body);
@@ -77,39 +107,68 @@ exports.swedish_chef = function(message, callback) {
     )
 }
 
-exports.piglatin = function(message, callback) {
+exports.pig_latin = function(message, callback) {
     var sendMessage = message.replace(/'/g,"");
     request.get(
         'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + '&type=piglatin', {},
         function(error, response, body){
-            console.log('Piglatin: ' + decodeURI(body));
+            console.log('Pig_latin: ' + decodeURI(body));
             callback(decodeURI(body));
         }
     )
 }
 
-exports.valleygirls = function(message, callback) {
+exports.valley_girls = function(message, callback) {
     var sendMessage = message.replace(/'/g,"");
     request.get(
         'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + '&type=valspeak', {},
         function(error, response, body){
-            console.log('valley speak: ' + decodeURI(body));
+            console.log('valley_girls: ' + decodeURI(body));
             callback(decodeURI(body));
         }
     )
 }
 
-//curl --include --request GET 'https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=Make%20me%20sound%20like%20a%20script%20kiddie.' \
-//--header "X-Mashape-Authorization: OJaFr3xagIi5v2M75FTMnP78eQpD973C"
-exports.leetspeak = function (message, callback) {
+exports['1337sp34k'] = function (message, callback) {
     var sendMessage = message.replace(/'/g,"");
     request.get(
         'https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=' + encodeURI(sendMessage),
-        {headers: {'X-Mashape-Authorization': 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'}},
+        {headers: {'X-Mashape-Authorization': mashape_key}},
         function(error, response, body) {
-            console.log('leetspeak: ' + body);
+            console.log('1337speak: ' + body);
             callback(body);
         }
     )
 }
 
+exports.yandex = function (language, message, callback) {
+    request.get(
+        '',
+        {},
+        function(error, response, body){
+            console.log('placeholder: ' + body);
+        }
+    )
+}
+
+//ERMAHGERD! HERPER METHERDS!
+// Taken from http://stackoverflow.com/a/7124052
+htmlEscape = function (str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+htmlUnescape = function (value){
+    return String(value)
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');
+}
+
+pull_yandex_list();
