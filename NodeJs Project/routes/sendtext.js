@@ -19,12 +19,12 @@ exports.send = function(req, res){
         });
     }
 
-//    translators.pirate(req.body.text, function() {});
-//    translators.ermahgerd(req.body.text, function() {});
-//    translators.yoda(req.body.text, function() {});
-//    translators.jive(req.body.text, function() {});
-//    translators.herdy(req.body.text, function() {});
-//    translators.piglatin(req.body.text, function() {});
-//    translators.valleygirls(req.body.text, function() {});
-//    translators.leetspeak(req.body.text, final);
+    translators.pirate(req.body.text, callback);
+    translators.ermahgerd(req.body.text, function() {});
+    translators.yoda(req.body.text, function() {});
+    translators.jive(req.body.text, function() {});
+    translators.herdy(req.body.text, function() {});
+    translators.piglatin(req.body.text, function() {});
+    translators.valleygirls(req.body.text, function() {});
+    translators.leetspeak(req.body.text, function(){});
 }

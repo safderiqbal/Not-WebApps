@@ -2,11 +2,15 @@
  * Created by Simon on 26/10/13.
  */
 var translator = require('./translators');
+var sessions = require('./sessions');
+
 exports.send = function(req){
     var http = require('http'),
+        request = require('request'),
         CLOCKWORK_SERVICE_URL = 'https://api.clockworksms.com/http/send.aspx',
         API_KEY = '028646a5dff4200dd4539102cb07e37413de2896',
-        request = require('request');
+        CLOCKWORK_NUMBER = '07860033160',
+        sessionId = sessions.addSession(req.fromNumber, req.toNumber);
 
     request.post(
         CLOCKWORK_SERVICE_URL,
@@ -14,7 +18,8 @@ exports.send = function(req){
             form: {
                 key: API_KEY,
                 to: req.toNumber,
-                content: req.content
+                content: req.content,
+                from: CLOCKWORK_NUMBER
             }
         },
         function (error, response, body) {
@@ -28,18 +33,7 @@ exports.send = function(req){
             }
         }
     );
+
+    return sessionId;
 };
 
-exports.receive = function(req, res) {
-    console.log(req.body.from);
-    console.log(req.body.content);
-
-    var translated = translator.pirate(req.body.content)
-
-    exports.send({
-        toNumber: req.body.from,
-        content: translated
-    });
-
-    res.end();
-};
