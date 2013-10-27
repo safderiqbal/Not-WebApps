@@ -12,13 +12,18 @@
 
     var socket = io.connect('/');
 
-    socket.emit('register', { sessionId: sessionId });
+    socket.on('confirm', function (data) {
+        console.log('Socket Event Confirm');
+        socket.emit('register', { sessionId: sessionId });
+    })
 
     socket.on('message', function (data) {
+        console.log('Socket Event Message');
         messages.append(messageHtml(data.sender, data.message));
     });
 
     socket.on('error', function (data) {
+        console.log('Socket Event Error');
         messages.append(errorHtml(data.sender, data.message));
     });
 
