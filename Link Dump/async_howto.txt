@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/16866015/node-js-wait-for-callback-of-rest-service-that-makes-http-request
