@@ -23,15 +23,11 @@ exports.receive = function(req, res) {
     }
 
     var callback = function (response){
-        if (target !== undefined) {
-            clockworkService.send({
-                toNumber: target,
-                content: response
-            });
-        }
-        else {
-            // push to webservice
-        }
+        clockworkService.send({
+            toNumber: target,
+            fromNumber: req.body.from,
+            content: response
+        });
     };
 
     var translated = translators.pirate(req.body.content.slice(sepIndex + 1), callback);
