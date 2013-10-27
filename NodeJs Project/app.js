@@ -5,8 +5,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
-var sendtext = require('./routes/sendtext');
 var receiveText = require('./routes/receiveText');
 var translator = require('./classes/translators');
 var session = require('./classes/sessions');
@@ -38,8 +36,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.post('/sendtext', sendtext.send);
 app.post('/receive', receiveText.receive);
 
 var server =  http.createServer(app);

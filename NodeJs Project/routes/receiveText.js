@@ -1,7 +1,3 @@
-/**
- * Created by Simon on 27/10/13.
- */
-
 var clockworkService = require('./../classes/clockworkService');
 var translators = require('./../classes/translators');
 var sessions = require('./../classes/sessions');
@@ -30,7 +26,7 @@ exports.receive = function(req, res) {
         });
     };
 
-    var translated = translators.pirate(req.body.content.slice(sepIndex + 1), callback);
+    translators.pirate(req.body.content.slice(sepIndex + 1), callback);
 
     res.end();
 };
