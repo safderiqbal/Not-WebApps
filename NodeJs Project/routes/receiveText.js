@@ -10,20 +10,31 @@ exports.receive = function(req, res) {
     console.log(req.body.from);
     console.log(req.body.content);
 
-    var translated = translator.pirate(req.body.content)
+    var raw = req.body.content;
+    var sepIndex = raw.search(":");
+    var target;
 
-    var session = sessions.getSessionByToNumber(req.body.from);
-
-    if (session.to !== undefined) {
-        clockworkService.send({
-            toNumber: session.to,
-            content: translated
-        });
+    if (sepIndex > 0) {
+        target = raw.slice(0, sepIndex);
+        sessions.addSession(req.body.from, target);
     }
-    else {
-        // push to webservice
+    else{
+        target = sessions.getSessionByNumber(req.body.from);
     }
 
+    var callback = function (response){
+        if (target !== undefined) {
+            clockworkService.send({
+                toNumber: target,
+                content: response
+            });
+        }
+        else {
+            // push to webservice
+        }
+    };
+
+    var translated = translators.pirate(req.body.content.slice(sepIndex + 1), callback);
 
     res.end();
 };

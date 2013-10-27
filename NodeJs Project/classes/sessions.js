@@ -9,7 +9,7 @@ exports.addSession = function (from, to) {
         from: from,
         to: to
     });
-
+    console.log("from:" + from + ";to:" + to);
     return exports.sessions.length;
 };
 
@@ -17,14 +17,16 @@ exports.getSessionById = function (sessionId) {
     return exports.sessions[sessionId - 1];
 };
 
-exports.getSessionByToNumber = function (to) {
-    var matchedEl;
+exports.getSessionByNumber = function (number) {
+    var el;
 
-    exports.sessions.forEach(function (el, index, array) {
-        if (el.to === to) {
-            matchedEl = el;
+    for (var i = exports.sessions.length - 1; i >= 0; i-- ) {
+        el = exports.sessions[i];
+        console.log(i + " - from:" + el.from + ";to:" + el.to);
+        if (el.to === number) {
+            return el.from;
+        } else if (el.from === number) {
+            return el.to;
         }
-    });
-
-    return matchedEl;
+    }
 };

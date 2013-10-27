@@ -9,8 +9,7 @@ exports.send = function(req){
         request = require('request'),
         CLOCKWORK_SERVICE_URL = 'https://api.clockworksms.com/http/send.aspx',
         API_KEY = '028646a5dff4200dd4539102cb07e37413de2896',
-        CLOCKWORK_NUMBER = '07860033160',
-        sessionId = sessions.addSession(req.fromNumber, req.toNumber);
+        CLOCKWORK_NUMBER = '07860033160';
 
     request.post(
         CLOCKWORK_SERVICE_URL,
@@ -33,7 +32,5 @@ exports.send = function(req){
             }
         }
     );
-
-    return sessionId;
 };
 

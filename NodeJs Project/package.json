@@ -1,6 +1,6 @@
 {
-  "name": "text-roulette",
-  "version": "0.0.4",
+  "name": "text-roulette1",
+  "version": "0.0.4-13",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -11,7 +11,7 @@
     "less-middleware": "*",
     "request": "~2.27.0"
   },
-  "subdomain": "text-roulette",
+  "subdomain": "text-roulette1",
   "engines": {
     "node": "0.10.x"
   }
