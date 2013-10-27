@@ -1,4 +1,3 @@
-exports = function() {
     var str_split,
         translate;
 
@@ -107,7 +106,9 @@ exports = function() {
         return word;
     };
 
-    return function (text) {
+    exports.translate = function (text) {
+        if (text===undefined)
+            text = '';
         text = text.toUpperCase();
 
         var lines = text.split("\n"),
@@ -135,4 +136,3 @@ exports = function() {
 
         return translatedLines.join("\n");
     }
-}();

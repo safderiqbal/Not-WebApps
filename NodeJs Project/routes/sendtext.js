@@ -19,5 +19,7 @@ exports.send = function(req, res){
         });
     }
 
-    translators.pirate(req.body.text, callback);
+    translators.pirate(req.body.text, function() {});
+    translators.yoda(req.body.text, function() {});
+    translators.ermahgerd(req.body.text, final);
 }
