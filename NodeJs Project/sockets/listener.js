@@ -54,7 +54,7 @@ var receive = function (data) {
         translator = data.translator,
         available_array;
 
-    //try {
+    try {
 
         console.log("Socket recieved message: " + JSON.stringify(data));
 
@@ -84,9 +84,9 @@ var receive = function (data) {
             // log the message back to the client
             sendToSession(from, from, message);
         }
-    //} catch (e) {
-        //errorToSession(from, to, "Error occoured: " + e);
-    //}
+    } catch (e) {
+        errorToSession(from, to, "Error occoured: " + e);
+    }
 }
 
 var error = function (client, sender, message) {
