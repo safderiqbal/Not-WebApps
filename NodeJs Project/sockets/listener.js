@@ -74,7 +74,7 @@ function receive(data) {
 
         function final() {
             // log the message back to the client
-            sendToSession(from, from, message);
+            sendToSession(from, 'Sent To:' + to, message);
         }
     } catch (e) {
         errorToSession(from, to, "Error occoured: " + e);
@@ -105,6 +105,10 @@ exports.broadcast = broadcast;
 exports.send = send;
 
 exports.sendToSession = sendToSession;
+
+exports.error = error;
+
+exports.errorToSession = errorToSession;
 
 exports.getSessionId = getSessionId;
 
