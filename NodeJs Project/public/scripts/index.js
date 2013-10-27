@@ -2,7 +2,8 @@
 $('#submit').click(function () {
     var to = $('#to').val(),
         from = $('#from').val(),
-        text = $('#text').val();
+        text = $('#text').val(),
+        translator = $('input[name=translator]:checked').val()
 
     $.ajax({
         url: 'sendtext',
@@ -11,7 +12,8 @@ $('#submit').click(function () {
         data: {
             from: from,
             to: to,
-            text: text
+            text: text,
+            translator: translator
         }
     })
 });
