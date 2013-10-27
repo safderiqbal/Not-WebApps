@@ -8,7 +8,7 @@ exports.receive = function(req, res) {
         message = req.body.content;
 
     var raw = req.body.content;
-    var sepIndex = raw.indexOf(":");
+    var sepIndex = raw.indexOf("|");
     
     console.log(from);
     console.log(message);
