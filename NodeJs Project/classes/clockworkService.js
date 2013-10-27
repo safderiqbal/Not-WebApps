@@ -12,8 +12,9 @@ exports.send = function(req){
         API_KEY = '028646a5dff4200dd4539102cb07e37413de2896',
         CLOCKWORK_NUMBER = '07860033160';
 
-    if(req.toNumber.indexOf('555') === 0){
+    if(req.toNumber.indexOf(listener.SESSION_PREPEND) === 0){
         listener.sendToSession(req.toNumber, req.fromNumber, req.content);
+        req.callback()
     }
     else {
         request.post(
@@ -27,7 +28,12 @@ exports.send = function(req){
                 }
             },
             function (error) {
-                errorToSession(req.fromNumber, 'system', error);
+                if (error) {
+                    listener.errorToSession(req.fromNumber, 'system', error);
+                }
+                else {
+                    req.callback();
+                }
             }
         );
     }
