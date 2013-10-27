@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Clockwork</id>
+    <version>1.1</version>
+    <title>Clockwork</title>
+    <authors>Mediaburst Ltd</authors>
+    <owners>Mediaburst Ltd</owners>
+    <licenseUrl>https://github.com/mediaburst/clockwork-dotnet/blob/master/License.txt</licenseUrl>
+    <projectUrl>http://www.clockworksms.com/</projectUrl>
+    <iconUrl>http://www.mediaburst.co.uk/downloads/clockwork-nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Send text messages using Clockwork
+
+Clockwork is an SMS API for sending text messages world wide
+
+Visit the website for more information.</description>
+    <summary>Clockwork SMS API</summary>
+    <releaseNotes />
+    <copyright>Mediaburst Ltd 2012</copyright>
+    <language>en-GB</language>
+    <tags>clockwork sms mediaburst text message</tags>
+  </metadata>
+</package>

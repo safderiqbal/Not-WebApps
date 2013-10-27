@@ -1,0 +1,53 @@
+extends layout
+
+block content
+    h1= title
+    .row
+        .col-sm-7
+            .row
+                .col-sm-12.sid.form-group
+                    .input-group
+                        span.input-group-addon Your Number
+                        input.form-control#sessionId(type='text', value=sessionId, disabled)
+            .row
+                .col-sm-12.numberTo.form-group
+                    .input-group
+                        span.input-group-addon Send To
+                        input.form-control#to(type='text', placeholder='Number for your recipient')
+            .row
+                .col-sm-12.numberFrom.form-group
+                    .input-group
+                        span.input-group-addon Reply Number
+                        input.form-control#from(type='text', placeholder='Number for recipient to reply to...')
+            .row
+                .col-sm-12.textText
+                    .form-group
+                        textarea.form-control#text(rows='10', placeholder='Your Text Message...')
+            .row
+                .col-sm-12.submitButton
+                    .form-group
+                        input.btn.btn-default#submit(type='button', value='Submit')
+        .col-sm-5
+            .row
+                .col-sm-12.translators
+                    h5 Choose a translator
+                    .form-group
+                        each translator in translators
+                            .radio
+                                label
+                                    input(type='radio', value=translator, name='translator')
+                                    = translator
+                        .radio
+                            label
+                                input(type='radio', value='random', name='translator', checked)
+                                | random
+
+    .row
+        .panel.panel-default
+            .panel-heading
+                h4 Messages
+            .panel-body#messages
+
+
+block scripts
+    script(src='/scripts/index.js')
