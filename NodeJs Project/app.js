@@ -7,10 +7,12 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var sendtext = require('./routes/sendtext');
-var translator = require('./classes/translators')
+var receiveText = require('./routes/receiveText');
+var translator = require('./classes/translators');
+var session = require('./classes/sessions');
 var http = require('http');
 var path = require('path');
-var clockworkService = require('./classes/clockworkService');
+
 
 var app = express();
 
@@ -36,8 +38,8 @@ app.get('/users', user.list);
 app.post('/sendtext', sendtext.send);
 app.get('/test_pirate', translator.pirate);
 app.get('/test_yoda', translator.yoda);
+app.post('/receive', receiveText.receive);
 app.get('/test_ermahgerd', translator.ermahgerd);
-app.post('/receive', clockworkService.receive);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
