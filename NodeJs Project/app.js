@@ -35,7 +35,9 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.post('/sendtext', sendtext.send);
 app.get('/test_pirate', translator.pirate);
-app.post('/receive', clockworkService.receive)
+app.get('/test_yoda', translator.yoda);
+app.get('/test_ermahgerd', translator.ermahgerd);
+app.post('/receive', clockworkService.receive);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
