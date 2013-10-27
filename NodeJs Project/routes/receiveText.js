@@ -38,9 +38,7 @@ exports.receive = function(req, res) {
         });
     };
 
-    var random = random_func(0, translators.available.length);
-    var random_translator = translators.available[random];
-    translators[random_translator](message.slice(sepIndex + 1), callback);
+    translators.random(message.slice(sepIndex + 1), callback);
 
     res.end();
 };
