@@ -3,22 +3,39 @@ extends layout
 block content
     h1= title
     .row
-        .col-sm-12.sid
-            =sessionId
-    .row
-        .col-sm-12.numberTo.input-group
-            span.input-group-addon Send To
-            input.form-control#to(type='text', placeholder='Number for your recipient')
-    .row
-        .col-sm-12.numberFrom.input-group
-            span.input-group-addon Reply Number
-            input.form-control#from(type='text', placeholder='Number for recipient to reply to...')
+        .col-sm-7
+            .row
+                .col-sm-12.sid.form-group
+                    .input-group
+                        span.input-group-addon Your Number
+                        input.form-control#sessionId(type='text', value=sessionId, disabled)
+            .row
+                .col-sm-12.numberTo.form-group
+                    .input-group
+                        span.input-group-addon Send To
+                        input.form-control#to(type='text', placeholder='Number for your recipient')
+            .row
+                .col-sm-12.numberFrom.form-group
+                    .input-group
+                        span.input-group-addon Reply Number
+                        input.form-control#from(type='text', placeholder='Number for recipient to reply to...')
+        .col-sm-5
+            .row
+                .col-sm-12.translators
+                    each translator in translators
+                        .form-group
+                            .checkbox
+                                label
+                                    input(type='checkbox', value=translator)
+                                    = translator
     .row
         .col-sm-12.textText
-            textarea.form-control#text(rows='10', placeholder='Your Text Message...')
+            .form-group
+                textarea.form-control#text(rows='10', placeholder='Your Text Message...')
     .row
         .col-sm-12.submitButton
-            input.btn.btn-default#submit(type='button', value='Submit');
+            .form-group
+                input.btn.btn-default#submit(type='button', value='Submit');
 
 block scripts
     script(src='/scripts/index.js');
