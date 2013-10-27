@@ -19,13 +19,12 @@ exports.send = function(req, res){
         });
     }
 
-
-    translators.ermahgerd(req.body.text, function() {});
-    translators.yoda(req.body.text, function() {});
-    translators.jive(req.body.text, function() {});
-    translators.swedish_chef(req.body.text, function() {});
-    translators.piglatin(req.body.text, function() {});
-    translators.valleygirls(req.body.text, function() {});
-    translators.leetspeak(req.body.text, function() {});
-    translators.pirate(req.body.text, callback);
+    if (req.body.translator == 'random') {
+        var random = Math.abs(Math.floor(1 - Math.random() * translators.available.length));
+        var random_translator = translators.available[random];
+        translators[random_translator](req.body.text, final);
+    }
+    else {
+        translators[req.body.translator](req.body.text, final);
+    }
 }
