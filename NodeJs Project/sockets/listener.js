@@ -51,17 +51,19 @@ var receive = function (data) {
     var from = data.from,
         to = data.to,
         message = data.text,
-        translator = data.translator;
+        translator = data.translator,
+        available_array;
 
-    try {
+    //try {
 
         console.log("Socket recieved message: " + JSON.stringify(data));
 
         sessions.addSession(from, to);
 
         if (translator == 'random') {
-            var random = random_func(0, translators.available.length);
-            var random_translator = translators.available[random];
+            available_array = translators.available();
+            var random = random_func(0, available_array.length);
+            var random_translator = available_array[random];
             translators[random_translator](message, callback);
         }
         else {
@@ -82,9 +84,9 @@ var receive = function (data) {
             // log the message back to the client
             sendToSession(from, from, message);
         }
-    } catch (e) {
-        errorToSession(from, to, "Error occoured: " + e);
-    }
+    //} catch (e) {
+        //errorToSession(from, to, "Error occoured: " + e);
+    //}
 }
 
 var error = function (client, sender, message) {
