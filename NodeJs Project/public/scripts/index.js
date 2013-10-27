@@ -3,6 +3,10 @@
     var messageHtml = function (sender, message) {
         return '<div class="row"><div class="col-sm-4">' + sender + '</div><div class="col-sm-8">' + message + '</div></div>';
     }
+
+    var errorHtml = function (sender, message) {
+        return '<div class="row error"><div class="col-sm-4">' + sender + '</div><div class="col-sm-8">' + message + '</div></div>';
+    }
     var messages = $('#messages');
     var sessionId = $('#sessionId').val();
 
@@ -12,6 +16,10 @@
 
     socket.on('message', function (data) {
         messages.append(messageHtml(data.sender, data.message));
+    });
+
+    socket.on('error', function (data) {
+        messages.append(errorHtml(data.sender, data.message));
     });
 
     $('#submit').click(function () {

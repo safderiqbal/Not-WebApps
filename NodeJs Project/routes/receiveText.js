@@ -3,19 +3,23 @@ var translators = require('./../classes/translators');
 var sessions = require('./../classes/sessions');
 
 exports.receive = function(req, res) {
-    console.log(req.body.from);
-    console.log(req.body.content);
+    var to,
+        from = req.body.from,
+        message = req.body.content;
 
     var raw = req.body.content;
     var sepIndex = raw.indexOf(":");
     var target;
+    
+    console.log(from);
+    console.log(message);
 
     if (sepIndex > 0) {
-        target = raw.slice(0, sepIndex);
-        sessions.addSession(req.body.from, target);
+        to = raw.slice(0, sepIndex);
+        sessions.addSession(from, to);
     }
     else{
-        target = sessions.getSessionByNumber(req.body.from);
+        target = sessions.getSessionByNumber(from);
     }
 
     if(target === undefined){
@@ -24,15 +28,15 @@ exports.receive = function(req, res) {
 
     var callback = function (response){
         clockworkService.send({
-            toNumber: target,
-            fromNumber: req.body.from,
+            toNumber: to,
+            fromNumber: from,
             content: response
         });
     };
 
     var random = random_func(0, translators.available.length);
     var random_translator = translators.available[random];
-    translators[random_translator](req.body.content.slice(sepIndex + 1), callback);
+    translators[random_translator](message.slice(sepIndex + 1), callback);
 
     res.end();
 };

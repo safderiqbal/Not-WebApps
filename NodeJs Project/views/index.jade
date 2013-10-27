@@ -27,26 +27,27 @@ block content
                 .col-sm-12.submitButton
                     .form-group
                         input.btn.btn-default#submit(type='button', value='Submit')
-        .col-sm-5
             .row
-                .col-sm-12.translators
-                    h5 Choose a translator
+                .col-sm-12.panel.panel-default
+                    .panel-heading
+                        h4 Messages
+            .panel-body#messages
+        .col-sm-5.translators
+            .row
+                .col-sm-12
+                    h3 Choose a translator
+            .row
+                .col-sm-12
                     .form-group
-                        .radio
+                        .radio.col-sm-6
                             label
                                 input(type='radio', value='random', name='translator', checked)
                                 | random
                         each translator in translators
-                            .radio
+                            .radio.col-sm-6
                                 label
                                     input(type='radio', value=translator, name='translator')
                                     = translator
-
-    .row
-        .panel.panel-default
-            .panel-heading
-                h4 Messages
-            .panel-body#messages
     .row
         p
             a(href='http://translate.yandex.com/') Translated by the Yandex.Translate service
