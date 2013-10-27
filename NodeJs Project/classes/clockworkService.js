@@ -14,7 +14,9 @@ exports.send = function(req){
 
     if(req.toNumber.indexOf(listener.SESSION_PREPEND) === 0){
         listener.sendToSession(req.toNumber, req.fromNumber, req.content);
-        req.callback()
+        if (req.callback !== undefined){
+            req.callback();
+        }
     }
     else {
         request.post(
@@ -32,7 +34,9 @@ exports.send = function(req){
                     listener.errorToSession(req.fromNumber, 'system', error);
                 }
                 else {
-                    req.callback();
+                    if (req.callback !== undefined){
+                        req.callback();
+                    };
                 }
             }
         );

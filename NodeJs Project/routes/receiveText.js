@@ -9,7 +9,6 @@ exports.receive = function(req, res) {
 
     var raw = req.body.content;
     var sepIndex = raw.indexOf(":");
-    var target;
     
     console.log(from);
     console.log(message);
@@ -22,7 +21,7 @@ exports.receive = function(req, res) {
         to = sessions.getSessionByNumber(from);
     }
 
-    if(target === undefined){
+    if(to === undefined){
         to = req.body.from;
     }
 
