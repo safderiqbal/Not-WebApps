@@ -12,27 +12,28 @@ var http,
     mashape_key,
     yandex_key,
     xtend,
-    pull_yandex_list;
+    pull_yandex_list,
+    random_func,
+    available,
+    availableForRandom;
 
 http = require('http'),
-    options = {
-        host: '',
-        path: ''
-    },
-    request = require('request')
-    xtend = require('xtend'),
-    ermahgerd = require('./ermahgerd').translate,
-    mashape_key = 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'
-    yandex_key = 'trnsl.1.1.20131027T100107Z.fde43fed6e42a72d.19b8b20bb9f723620d058c4c2b6f53b40aa6bf2d';
-
-var available = ['pirate',
+options = {
+    host: '',
+    path: ''},
+request = require('request')
+ermahgerd = require('./ermahgerd').translate,
+mashape_key = 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'
+yandex_key = 'trnsl.1.1.20131027T100107Z.fde43fed6e42a72d.19b8b20bb9f723620d058c4c2b6f53b40aa6bf2d'
+available = ['pirate',
                 'ermahgerd',
                 'yoda',
                 'jive',
                 'swedish_chef',
                 'pig_latin',
                 'valley_girls',
-                '1337sp34k'];
+                '1337sp34k'],
+availableForRandom = available.slice(0,available.length);
 
 exports.available = function () {
     return available;
@@ -140,6 +141,15 @@ exports['1337sp34k'] = function (message, callback) {
         }
     )
 }
+
+exports.random = function(message, callback) {
+    var randomNum,
+        randomTranslator;
+    randomNum = random_func(0, availableForRandom.length);
+    randomTranslator = availableForRandom[randomNum];
+    exports[randomTranslator](message, callback);
+}
+
 
 exports.yandex = function (language, message, callback) {
     request.get(
@@ -379,6 +389,10 @@ htmlUnescape = function (value){
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
         .replace(/&amp;/g, '&');
+}
+
+random_func = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 pull_yandex_list();

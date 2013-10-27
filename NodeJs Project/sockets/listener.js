@@ -60,16 +60,7 @@ function receive(data) {
         console.log("Socket received message: " + JSON.stringify(data));
 
         sessions.addSession(from, to);
-
-        if (translator == 'random') {
-            available_array = translators.available();
-            var random = random_func(0, available_array.length);
-            var random_translator = available_array[random];
-            translators[random_translator](message, callback);
-        }
-        else {
-            translators[translator](message, callback);
-        }
+        translators[translator](message, callback);
 
         function callback(translatedMessage) {
             message = translatedMessage;
