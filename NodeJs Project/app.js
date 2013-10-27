@@ -42,10 +42,6 @@ app.get('/users', user.list);
 app.post('/sendtext', sendtext.send);
 app.post('/receive', receiveText.receive);
 
-app.get('/test_pirate', translator.pirate);
-app.get('/test_yoda', translator.yoda);
-app.get('/test_ermahgerd', translator.ermahgerd);
-
 var server =  http.createServer(app);
 var io = socketio.listen(server);
 
