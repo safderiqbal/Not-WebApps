@@ -1,0 +1,3 @@
+C:\Users\Safder\Documents\Repos\Not WebApps\VS Project\HackManchester\TextYourFridge\bin\Debug\TextYourFridge.exe.config
+C:\Users\Safder\Documents\Repos\Not WebApps\VS Project\HackManchester\TextYourFridge\obj\Debug\TextYourFridge.exe
+C:\Users\Safder\Documents\Repos\Not WebApps\VS Project\HackManchester\TextYourFridge\obj\Debug\TextYourFridge.pdb
