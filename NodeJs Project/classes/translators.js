@@ -20,7 +20,7 @@ exports.available = ['pirate',
                 'ermahgerd',
                 'yoda',
                 'jive',
-                'herdy',
+                'swedish_chef',
                 'piglatin',
                 'valleygirls',
                 'leetspeak'];
@@ -53,9 +53,9 @@ exports.yoda = function(message, callback) {
 }
 
 exports.jive = function(message, callback) {
-    var sendMessage = message.replace(' ','%20');
+    //var sendMessage = message.replace(' ','%20');
     request.get(
-        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + 'type=jive', {},
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(message) + '&type=jive', {},
         function(error, response, body){
             console.log('Jive: ' + decodeURI(body));
             callback(decodeURI(body));
@@ -63,21 +63,21 @@ exports.jive = function(message, callback) {
     )
 }
 
-exports.herdy = function(message, callback) {
-    var sendMessage = message.replace(' ','%20');
+exports.swedish_chef = function(message, callback) {
+    //var sendMessage = message.replace(' ','%20');
     request.get(
-        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMEssage) + 'type=chef', {},
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(message) + '&type=chef', {},
         function(error, response, body){
-            console.log('Chef: ' + decodeURI(body));
+            console.log('swedish_chef: ' + decodeURI(body));
             callback(decodeURI(body));
         }
     )
 }
 
 exports.piglatin = function(message, callback) {
-    var sendMessage = message.replace(' ','%20');
+   // var sendMessage = message.replace(' ','%20');
     request.get(
-        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + 'type=piglatin', {},
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(message) + '&type=piglatin', {},
         function(error, response, body){
             console.log('Piglatin: ' + decodeURI(body));
             callback(decodeURI(body));
@@ -86,9 +86,9 @@ exports.piglatin = function(message, callback) {
 }
 
 exports.valleygirls = function(message, callback) {
-    var sendMessage = message.replace(' ','%20');
+   // var sendMessage = message.replace(' ','%20');
     request.get(
-        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + 'type=valspeak', {},
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(message) + '&type=valspeak', {},
         function(error, response, body){
             console.log('valley speak: ' + decodeURI(body));
             callback(decodeURI(body));
