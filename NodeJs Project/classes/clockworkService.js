@@ -26,15 +26,8 @@ exports.send = function(req){
                     from: CLOCKWORK_NUMBER
                 }
             },
-            function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    console.log('it works' + body);
-                }
-                else {
-                    console.log('damn' + error);
-                    console.log('damn' + response);
-                    console.log('damn' + body);
-                }
+            function (error) {
+                errorToSession(req.fromNumber, 'system', error);
             }
         );
     }
