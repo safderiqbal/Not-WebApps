@@ -19,23 +19,29 @@ block content
                     .input-group
                         span.input-group-addon Reply Number
                         input.form-control#from(type='text', placeholder='Number for recipient to reply to...')
+            .row
+                .col-sm-12.textText
+                    .form-group
+                        textarea.form-control#text(rows='10', placeholder='Your Text Message...')
+            .row
+                .col-sm-12.submitButton
+                    .form-group
+                        input.btn.btn-default#submit(type='button', value='Submit');
         .col-sm-5
             .row
                 .col-sm-12.translators
-                    each translator in translators
-                        .form-group
-                            .checkbox
+                    h5 Choose a translator
+                    .form-group
+                        each translator in translators
+                            .radio
                                 label
-                                    input(type='checkbox', value=translator)
+                                    input(type='radio', value=translator, name='translator')
                                     = translator
-    .row
-        .col-sm-12.textText
-            .form-group
-                textarea.form-control#text(rows='10', placeholder='Your Text Message...')
-    .row
-        .col-sm-12.submitButton
-            .form-group
-                input.btn.btn-default#submit(type='button', value='Submit');
+                        .radio
+                            label
+                                input(type='radio', value='random', name='translator', checked)
+                                | random
+
 
 block scripts
     script(src='/scripts/index.js');

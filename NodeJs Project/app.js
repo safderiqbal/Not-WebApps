@@ -13,6 +13,8 @@ var session = require('./classes/sessions');
 var http = require('http');
 var path = require('path');
 
+var socketio = require('socket.io');
+var listener = require('./sockets/listener');
 
 var app = express();
 
@@ -28,6 +30,8 @@ app.use(app.router);
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -41,6 +45,11 @@ app.get('/test_yoda', translator.yoda);
 app.post('/receive', receiveText.receive);
 app.get('/test_ermahgerd', translator.ermahgerd);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server =  http.createServer(app);
+var io = socketio.listen(server);
+
+io.sockets.on('connection', listener.connection);
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
