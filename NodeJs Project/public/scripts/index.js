@@ -1,6 +1,6 @@
 $('#submit').click(function () {
     var to = $('#to').val(),
-        from = $('#from').val(),
+        from = $('#sessionId').val(),
         text = $('#text').val(),
         translator = $('input[name=translator]:checked').val()
 
