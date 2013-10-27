@@ -32,9 +32,9 @@ exports.send = function(req, res){
     if (req.body.translator == 'random') {
         var random = random_func(0,translators.available.length);
         var random_translator = translators.available[random];
-        translators[random_translator](req.body.text, callback);
+        translators[random_translator](req.body.text, final);
     }
     else {
-        translators[req.body.translator](req.body.text, callback);
+        translators[req.body.translator](req.body.text, final);
     }
 }

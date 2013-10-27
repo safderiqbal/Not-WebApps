@@ -10,7 +10,8 @@
     "jade": "*",
     "less-middleware": "*",
     "request": "~2.27.0",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "xtend": "~2.1.1"
   },
   "subdomain": "text-roulette",
   "engines": {
