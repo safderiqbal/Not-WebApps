@@ -18,7 +18,12 @@ http = require('http'),
 
 exports.available = ['pirate',
                 'ermahgerd',
-                'yoda'];
+                'yoda',
+                'jive',
+                'herdy',
+                'piglatin',
+                'valleygirls',
+                'leetspeak'];
 
 exports.pirate = function (message, callback) {
     request.get(
@@ -42,6 +47,63 @@ exports.yoda = function(message, callback) {
         {headers: {'X-Mashape-Authorization': 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'}},
         function(error, response, body) {
             console.log('yoda: ' + body);
+            callback(body);
+        }
+    )
+}
+
+exports.jive = function(message, callback) {
+    var sendMessage = message.replace(' ','%20');
+    request.get(
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + 'type=jive', {},
+        function(error, response, body){
+            console.log('Jive: ' + decodeURI(body));
+            callback(decodeURI(body));
+        }
+    )
+}
+
+exports.herdy = function(message, callback) {
+    var sendMessage = message.replace(' ','%20');
+    request.get(
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMEssage) + 'type=chef', {},
+        function(error, response, body){
+            console.log('Chef: ' + decodeURI(body));
+            callback(decodeURI(body));
+        }
+    )
+}
+
+exports.piglatin = function(message, callback) {
+    var sendMessage = message.replace(' ','%20');
+    request.get(
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + 'type=piglatin', {},
+        function(error, response, body){
+            console.log('Piglatin: ' + decodeURI(body));
+            callback(decodeURI(body));
+        }
+    )
+}
+
+exports.valleygirls = function(message, callback) {
+    var sendMessage = message.replace(' ','%20');
+    request.get(
+        'http://www.cs.utexas.edu/users/jbc/bork/bork.cgi?input=' + encodeURI(sendMessage) + 'type=valspeak', {},
+        function(error, response, body){
+            console.log('valley speak: ' + decodeURI(body));
+            callback(decodeURI(body));
+        }
+    )
+}
+
+//curl --include --request GET 'https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=Make%20me%20sound%20like%20a%20script%20kiddie.' \
+//--header "X-Mashape-Authorization: OJaFr3xagIi5v2M75FTMnP78eQpD973C"
+exports.leetspeak = function (message, callback) {
+    request.get(
+        'https://montanaflynn-l33t-sp34k.p.mashape.com/encode?text=' + encodeURI(message),
+        {headers: {'X-Mashape-Authorization': 'OJaFr3xagIi5v2M75FTMnP78eQpD973C'}},
+        function(error, response, body) {
+            console.log('leetspeak: ' + body);
             callback(body);
         }
     )
