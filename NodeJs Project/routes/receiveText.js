@@ -19,11 +19,11 @@ exports.receive = function(req, res) {
         sessions.addSession(from, to);
     }
     else{
-        target = sessions.getSessionByNumber(from);
+        to = sessions.getSessionByNumber(from);
     }
 
     if(target === undefined){
-        target = req.body.from;
+        to = req.body.from;
     }
 
     var callback = function (response){
