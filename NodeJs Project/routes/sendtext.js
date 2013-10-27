@@ -27,7 +27,7 @@ exports.send = function(req, res){
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    sessions.addSession(0, req.body.to);
+    sessions.addSession(req.body.from, req.body.to);
 
     if (req.body.translator == 'random') {
         var random = random_func(0,translators.available.length);
